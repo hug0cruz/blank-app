@@ -5,14 +5,14 @@ from streamlit_folium import folium_static
 from geopy.distance import geodesic
 from streamlit_geolocation import streamlit_geolocation
 
-# ⚠️ Esta deve ser a primeira instrução Streamlit
+
 st.set_page_config(layout="wide")
 st.title("📍 Mapa Dinâmico V2.1")
 
-# Obter localização atual do usuário
+# Obter localização atual 
 location = streamlit_geolocation()
 
-# Verificar se a localização foi obtida corretamente
+#  localização foi obtida corretamente
 if not location or location["latitude"] is None or location["longitude"] is None:
     st.info("Clique no botão acima para permitir acesso à sua localização.")
     st.stop()
@@ -20,7 +20,7 @@ if not location or location["latitude"] is None or location["longitude"] is None
 user_lat = location["latitude"]
 user_lon = location["longitude"]
 
-# Verificar se as coordenadas estão dentro dos limites válidos
+#  coordenadas estão dentro dos limites válidos
 if not (-90 <= user_lat <= 90) or not (-180 <= user_lon <= 180):
     st.error("Coordenadas inválidas. Verifique a sua localização.")
     st.stop()
@@ -34,7 +34,7 @@ if uploaded_file:
 
     search_input = st.text_input("Insira os Códigos dos Sites (separados por espaço)").upper()
 
-    if st.button("Buscar Sites no Mapa"):
+    if st.button("Pesquisar"):
         cod_sites = [cod.strip() for cod in search_input.split() if cod.strip()]
         result = df[df["Cod Site"].isin(cod_sites)]
 
